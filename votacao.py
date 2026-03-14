@@ -1,8 +1,11 @@
-candidatos = {i: 0 for i in range(1,5)}
+candidatos = {i: 0 for i in range(1,5)} #faz o dicionário referente à quantidade de votos para cada candidato (iniciados em 0)
 
+#solicita 10 votos
 for _ in range (1, 11):
     voto = int(input('Em qual candidato você deseja votar? (1, 2, 3 ou 4): '))
+    #
     while voto not in candidatos:
+        print("Candidato não existente")
         voto = int(input('Em qual candidato você deseja votar? (1, 2, 3 ou 4): '))
     candidatos[voto] += 1
 
