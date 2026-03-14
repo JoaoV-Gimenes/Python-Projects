@@ -20,7 +20,7 @@ if combustivel in preco:
     
     #calcular o valor final com desconto
     valor_final = (volume * valor) * (1-desconto)
-    print(f'valor a pagar: {valor_final}')
+    print(f'valor a pagar: {valor_final:.2f}')
 
 else:
     print('combustivel inválido')
