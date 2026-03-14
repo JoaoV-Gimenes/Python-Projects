@@ -49,4 +49,4 @@ for a in numeros:
         #adiciona um número na lista ímpar caso não for múltiplo de 2
         impar.append(a)
 #printa a quantidade de números pares e ímpares
-print(f'Em sua lista você possui {len(par)} número(s) pare(s) e {len(impar)} número(s) ímpare(s)')
+print(f'Em sua lista você possui {len(par)} número(s) par(es) e {len(impar)} número(s) ímpar(es)')
