@@ -1,32 +1,51 @@
+import pandas as pd
 
 def menu():
-    return input('O que deseja realizar?\n' + '<I> Inserir novo usuário\n' + '<E> Excluir usuário\n' + '<L> Listar usuário\n' + '<P> Pesquisar usuário\n').upper()
-
-opcoes = {
-    'I' : 'inserir',
-    'E' : 'excluir',
-    'L' : 'listar',
-    'P' : 'pesquisar'
-}
+  return input('O que deseja realizar?\n' + '<I> Inserir novo usuário\n' + '<E> Excluir usuário\n' + 
+                 '<L> Listar usuários\n' + '<P> Pesquisar usuário\n').upper()
 
 def inserir(banco):
-    banco[input('Digite o apelido do usuário: ').tittle()] = [input('Digite o nome do usuário: ').tittle(), input('Digite a última estação acessada: '), input('Digite a ultima data de acesso (dd/mm/yy): ')]
-    return banco
+  nome = input('Digite o nome do usuário: ').upper()
+  if nome in banco['Nome'].values:
+    return 'Usuário já existe!'
 
-def excluir(banco, usuario):
-    banco.remove(usuario)
-    return f'{usuario} removido!'
+  banco.loc[len(banco)] = {
+      'nome' : nome, 
+      'departamento' : input('Departamento: '), 
+      'salário' : int(input('Salário: '))
+   }
+  print('Usuário adicionado com sucesso!')
+  return banco
 
-def pesquisaU(banco, usuario):
-    return banco[usuario]
+def excluir(banco):
+    usuario = input('Digite qual usuário deseja remover: ').upper()
 
-def pesquisaN(banco, usuario, nome):
-    return banco[usuario][nome]
+    if usuario in banco['Nome'].values:
+        banco = banco[banco['Nome'] != usuario]
+        print(f'{usuario} removido!')
+        return banco
+    else:
+        print(f'usuario {usuario} não encontrado!')
+        return banco
 
-def pesquisaE(banco, usuario, estacao):
-    return banco[usuario][estacao]
+def pesquisaU(banco):
+  usuario = input('Digite qual usuário deseja pesquisar: ')
+  return banco[usuario]
 
-def pesquisaD(banco, usuario, data):
-    return banco[usuario][data]
+def pesquisaGeral(banco):
+  valor = input('valor para busca: ')
+  df_busca = banco.columns[banco.isin([valor]).any()]
+  return banco[df_busca]
 
-    
+def pesquisar():
+  print('')
+
+def listar(banco):
+    print(banco)
+
+opcoes = {
+    'I' : inserir,
+    'E' : excluir,
+    'L' : listar,
+    'P' : pesquisar
+}
